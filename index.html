@@ -875,7 +875,6 @@
 
         .modal-overlay.active {
             opacity: 1;
-            pointer-events: auto;
         }
 
         .modal-window {
@@ -889,6 +888,9 @@
             transform: scale(0.9) translateY(20px);
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
+            display: flex;
+            flex-direction: column;
+            max-height: 85vh; /* Limit desktop modal height to fit viewport */
         }
 
         .modal-overlay.active .modal-window {
@@ -896,11 +898,12 @@
         }
 
         .modal-header {
-            padding: 32px 32px 20px;
+            padding: 28px 32px 18px;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0; /* Keep header fixed size */
         }
 
         .modal-header-info h3 {
@@ -938,9 +941,33 @@
             border-color: rgba(244, 63, 94, 0.3);
         }
 
-        /* Modal Body Form */
-        .modal-body {
-            padding: 32px;
+        /* Modal Body Scrollable middle section */
+        .modal-body-scroll {
+            padding: 24px 32px;
+            overflow-y: auto;
+            flex-grow: 1; /* Expand scrollable body to fill height */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-body-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .modal-body-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .modal-body-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        /* Modal Fixed Footer container */
+        .modal-footer {
+            padding: 16px 32px 28px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(15, 23, 42, 0.3); /* Subtle dark backer for footer */
+            flex-shrink: 0; /* Keep footer fixed size */
         }
 
         .form-grid {
@@ -1293,14 +1320,23 @@
 
             .modal-window {
                 border-radius: 20px;
+                max-height: 80vh; /* Tighten max height to fit small viewports */
             }
             
             .modal-header {
-                padding: 20px 20px 12px;
+                padding: 18px 20px 12px;
             }
             
-            .modal-body {
-                padding: 20px;
+            .modal-body-scroll {
+                padding: 16px 20px; /* Reduced vertical spacing on mobile */
+            }
+
+            .modal-footer {
+                padding: 12px 20px 20px;
+            }
+
+            .form-group {
+                margin-bottom: 12px; /* Slightly compacted fields for mobile screen savings */
             }
         }
     </style>
@@ -1545,7 +1581,7 @@
     <div id="contact-modal" class="modal-overlay" onclick="closeModalOnOutsideClick(event)">
         <div class="modal-window">
             
-            <!-- Standard Form Header -->
+            <!-- Standard Form Header (Fixed at top) -->
             <div class="modal-header">
                 <div class="modal-header-info">
                     <h3>留言給經紀人</h3>
@@ -1554,9 +1590,10 @@
                 <button class="modal-close-btn" onclick="closeModal()">✕</button>
             </div>
 
-            <!-- Form Content -->
-            <div class="modal-body">
-                <form id="collaboration-form" onsubmit="handleFormSubmit(event)">
+            <!-- Form enclosing scrollable middle and fixed footer -->
+            <form id="collaboration-form" onsubmit="handleFormSubmit(event)">
+                <!-- Scrollable Body fields -->
+                <div class="modal-body-scroll">
                     
                     <div class="form-grid">
                         <div class="form-group">
@@ -1596,11 +1633,15 @@
                         <textarea class="form-textarea" id="coop-concept" required placeholder="請簡單說明您想推廣的產品與期望的合作策略方向..."></textarea>
                     </div>
 
+                </div>
+
+                <!-- Fixed Footer with Submit button -->
+                <div class="modal-footer">
                     <button class="form-submit-btn" type="submit">
                         🚀 發送商務提案與聯絡經紀人
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
 
             <!-- Success screen -->
             <div id="success-screen" class="modal-success-screen">
