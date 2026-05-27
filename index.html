@@ -251,35 +251,39 @@
            3. TABS NAVIGATION CONTROL
            ------------------------------------------------------------- */
         .tab-navigation {
-            display: flex;
-            background: rgba(15, 23, 42, 0.5);
-            border-bottom: 1px solid var(--border-glass);
-            padding: 8px 16px;
-            gap: 8px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: rgba(10, 15, 26, 0.95);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 6px;
+            gap: 6px;
+            margin: 16px 32px 0; /* Add container margins for perfect floating pill feel */
             position: relative;
             z-index: 10;
         }
 
         .tab-btn {
             background: transparent;
-            border: none;
+            border: 1px solid transparent;
             color: var(--text-secondary);
             font-family: var(--font-sans);
-            font-size: 1.25rem; /* Scaled up */
-            font-weight: 600; /* Increased weight */
-            padding: 16px 20px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            padding: 14px 8px;
             cursor: pointer;
             border-radius: 12px;
             transition: var(--transition-smooth);
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center; /* Center content horizontally */
+            gap: 8px;
             position: relative;
             outline: none;
         }
 
         .tab-btn i {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             transition: var(--transition-smooth);
         }
 
@@ -288,23 +292,26 @@
             background: rgba(255, 255, 255, 0.03);
         }
 
-        .tab-btn.active {
-            color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.07);
-            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        /* Beautiful glowing multi-color capsule states for different tabs */
+        .tab-btn[data-tab="traffic"].active {
+            background: rgba(56, 189, 248, 0.15) !important;
+            border-color: rgba(56, 189, 248, 0.35) !important;
+            color: #38BDF8 !important;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
         }
 
-        /* Accent line for active tab */
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 20px;
-            right: 20px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-gold), var(--accent-coral));
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(244, 63, 94, 0.4);
+        .tab-btn[data-tab="private"].active {
+            background: rgba(244, 63, 94, 0.15) !important;
+            border-color: rgba(244, 63, 94, 0.35) !important;
+            color: #F43F5E !important;
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.15);
+        }
+
+        .tab-btn[data-tab="strategies"].active {
+            background: rgba(234, 179, 8, 0.15) !important;
+            border-color: rgba(234, 179, 8, 0.35) !important;
+            color: #EAB308 !important;
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.15);
         }
 
         /* -------------------------------------------------------------
@@ -1193,32 +1200,29 @@
                 box-sizing: border-box;
             }
 
-            /* Tab buttons horizontal scroll on mobile */
+            /* Segmented 1-row tab control on mobile (No scroll, 100% visible) */
             .tab-navigation {
-                padding: 6px;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none; /* Hide scrollbar Firefox */
-                display: flex;
-                flex-wrap: nowrap;
-                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                width: calc(100% - 32px); /* Centered with 16px side margins */
+                margin: 12px 16px 0;
+                padding: 4px;
+                gap: 4px;
+                border-radius: 12px;
+                overflow: hidden;
             }
 
             .tab-navigation::-webkit-scrollbar {
-                display: none; /* Hide scrollbar Chrome/Safari */
+                display: none;
             }
 
             .tab-btn {
-                padding: 12px 14px;
-                font-size: 1.15rem; /* Scaled up */
-                white-space: nowrap; /* Prevent line breaks */
-                border-radius: 8px;
+                padding: 10px 4px; /* Slightly compacted padding for perfect width fitting */
+                font-size: 1.05rem; /* Exactly optimized to fit 4 Chinese characters side-by-side */
+                white-space: nowrap;
+                border-radius: 10px;
                 font-weight: 600;
-            }
-
-            .tab-btn.active::after {
-                left: 10px;
-                right: 10px;
+                gap: 4px;
             }
 
             .tab-content-wrapper {
@@ -1351,14 +1355,14 @@
             
             <!-- Dynamic Navigation Tabs -->
             <nav class="tab-navigation">
-                <button class="tab-btn active" onclick="switchTab('tab-traffic')">
-                    <i>📊</i> 流量數據大盤
+                <button class="tab-btn active" onclick="switchTab('tab-traffic')" data-tab="traffic">
+                    <i>📊</i> 流量大盤
                 </button>
-                <button class="tab-btn" onclick="switchTab('tab-private')">
-                    <i>🔥</i> 私域鐵粉變現
+                <button class="tab-btn" onclick="switchTab('tab-private')" data-tab="private">
+                    <i>🔥</i> 私域變現
                 </button>
-                <button class="tab-btn" onclick="switchTab('tab-strategies')">
-                    <i>🎯</i> 三大合作方向
+                <button class="tab-btn" onclick="switchTab('tab-strategies')" data-tab="strategies">
+                    <i>🎯</i> 合作方向
                 </button>
             </nav>
 
