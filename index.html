@@ -409,13 +409,37 @@
         }
 
         /* =========================================================
+           SLIDES SYSTEM — FOR PITCH DECK (MOBILE ONLY)
+           ========================================================= */
+        .slides-viewport {
+            width: 100%;
+            overflow: visible;
+        }
+        .slides-container {
+            display: block;
+            transition: none;
+            transform: none !important;
+        }
+        .slide-item {
+            width: 100%;
+            display: block;
+        }
+        .slide-dots {
+            display: none;
+        }
+
+        /* =========================================================
            TAB 1 — TRAFFIC DATA
            ========================================================= */
-        .metrics-grid {
+        #panel-traffic .slides-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
             margin-bottom: 16px;
+        }
+        #panel-traffic .slide-item:nth-child(3),
+        #panel-traffic .slide-item:nth-child(4) {
+            grid-column: span 2;
         }
 
         .metric-card {
@@ -536,11 +560,14 @@
         /* =========================================================
            TAB 2 — PRIVATE FUNNEL
            ========================================================= */
-        .compare-grid {
+        #panel-private .slides-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
             margin-bottom: 24px;
+        }
+        #panel-private .slide-item:nth-child(3) {
+            grid-column: span 2;
         }
 
         .compare-card {
@@ -631,11 +658,14 @@
         /* =========================================================
            TAB 3 — COLLABORATION DIRECTIONS
            ========================================================= */
-        .collab-grid {
+        #panel-collab .slides-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
             margin-bottom: 24px;
+        }
+        #panel-collab .slide-item:nth-child(4) {
+            grid-column: span 3;
         }
 
         .collab-card {
@@ -1214,6 +1244,51 @@
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
             }
 
+            /* Slides Layout on Mobile */
+            .slides-viewport {
+                position: relative;
+                width: 100%;
+                overflow: hidden;
+            }
+            .slides-container {
+                display: flex !important;
+                flex-direction: row !important;
+                width: 100%;
+                transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .slide-item {
+                width: 100% !important;
+                flex-shrink: 0 !important;
+                padding: 4px;
+            }
+            .slide-dots {
+                display: flex !important;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 18px;
+            }
+            .slide-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.25);
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+            .slide-dot.active {
+                background: var(--gold-bright);
+                box-shadow: 0 0 8px var(--gold-bright);
+                transform: scale(1.2);
+            }
+
+            .metric-card, .compare-card, .collab-card {
+                margin-bottom: 0 !important;
+            }
+            .metrics-row, .insight-box, .funnel-note, .collab-footer-note {
+                margin-bottom: 0 !important;
+                margin-top: 0 !important;
+            }
+
             .panel-title { 
                 font-size: 1.7rem; 
                 margin-bottom: 4px;
@@ -1642,37 +1717,55 @@
                     <h2 class="panel-title">流量數據大盤</h2>
                     <p class="panel-subtitle">Instagram 平台實績 · 近期數據</p>
 
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-num">1,460<sup>萬+</sup></div>
-                            <div class="metric-label">Reels 觸及人數</div>
-                            <div class="metric-desc">單月最高觸及，跨越台語音樂圈，滲透主流娛樂受眾</div>
+                    <div class="slides-viewport">
+                        <div class="slides-container">
+                            <!-- Slide 1 -->
+                            <div class="slide-item">
+                                <div class="metric-card">
+                                    <div class="metric-num">1,460<sup>萬+</sup></div>
+                                    <div class="metric-label">Reels 觸及人數</div>
+                                    <div class="metric-desc">單月最高觸及，跨越台語音樂圈，滲透主流娛樂受眾</div>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="slide-item">
+                                <div class="metric-card">
+                                    <div class="metric-num">1,800<sup>萬+</sup></div>
+                                    <div class="metric-label">影片總觀看次數</div>
+                                    <div class="metric-desc">多支 Reels 累積觀看，形成持續性品牌曝光複利</div>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="slide-item">
+                                <div class="metrics-row">
+                                    <div class="metric-mini">
+                                        <div class="mn-val">8.3秒</div>
+                                        <div class="mn-label">平均觀看時長</div>
+                                    </div>
+                                    <div class="metric-mini">
+                                        <div class="mn-val">4.2%</div>
+                                        <div class="mn-label">互動率</div>
+                                    </div>
+                                    <div class="metric-mini">
+                                        <div class="mn-val">78%</div>
+                                        <div class="mn-label">女性核心受眾</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class="slide-item">
+                                <div class="insight-box">
+                                    <span class="insight-icon">💡</span>
+                                    <p>鍾綺 Bell 的受眾以 <strong>25–38 歲都會女性</strong>為核心，具備完整消費決策能力。Reels 的高完播率代表受眾對內容真心認可，而非被動刷過，這正是<strong>品牌廣告轉化的黃金土壤</strong>。</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-num">1,800<sup>萬+</sup></div>
-                            <div class="metric-label">影片總觀看次數</div>
-                            <div class="metric-desc">多支 Reels 累積觀看，形成持續性品牌曝光複利</div>
+                        <div class="slide-dots">
+                            <span class="slide-dot active" data-slide="0"></span>
+                            <span class="slide-dot" data-slide="1"></span>
+                            <span class="slide-dot" data-slide="2"></span>
+                            <span class="slide-dot" data-slide="3"></span>
                         </div>
-                    </div>
-
-                    <div class="metrics-row">
-                        <div class="metric-mini">
-                            <div class="mn-val">8.3秒</div>
-                            <div class="mn-label">平均觀看時長</div>
-                        </div>
-                        <div class="metric-mini">
-                            <div class="mn-val">4.2%</div>
-                            <div class="mn-label">互動率</div>
-                        </div>
-                        <div class="metric-mini">
-                            <div class="mn-val">78%</div>
-                            <div class="mn-label">女性核心受眾</div>
-                        </div>
-                    </div>
-
-                    <div class="insight-box">
-                        <span class="insight-icon">💡</span>
-                        <p>鍾綺 Bell 的受眾以 <strong>25–38 歲都會女性</strong>為核心，具備完整消費決策能力。Reels 的高完播率代表受眾對內容真心認可，而非被動刷過，這正是<strong>品牌廣告轉化的黃金土壤</strong>。</p>
                     </div>
                 </section>
 
@@ -1681,50 +1774,65 @@
                     <h2 class="panel-title">私域鐵粉經濟</h2>
                     <p class="panel-subtitle">公域流量 vs. 私域深耕的轉化對比</p>
 
-                    <div class="compare-grid">
-                        <div class="compare-card">
-                            <h3>📢 一般公域推播</h3>
-                            <div class="compare-row">
-                                <span class="cr-label">電子報開信率</span>
-                                <span class="cr-val">15–25%</span>
+                    <div class="slides-viewport">
+                        <div class="slides-container">
+                            <!-- Slide 1 -->
+                            <div class="slide-item">
+                                <div class="compare-card">
+                                    <h3>📢 一般公域推播</h3>
+                                    <div class="compare-row">
+                                        <span class="cr-label">電子報開信率</span>
+                                        <span class="cr-val">15–25%</span>
+                                    </div>
+                                    <div class="compare-row">
+                                        <span class="cr-label">點擊率 CTR</span>
+                                        <span class="cr-val">1–2%</span>
+                                    </div>
+                                    <div class="compare-row">
+                                        <span class="cr-label">購買轉化率 CVR</span>
+                                        <span class="cr-val">0.5–1%</span>
+                                    </div>
+                                    <div class="compare-row">
+                                        <span class="cr-label">受眾信任度</span>
+                                        <span class="cr-val">低</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="compare-row">
-                                <span class="cr-label">點擊率 CTR</span>
-                                <span class="cr-val">1–2%</span>
+                            <!-- Slide 2 -->
+                            <div class="slide-item">
+                                <div class="compare-card featured">
+                                    <h3>🔐 Bell 私域鐵粉</h3>
+                                    <div class="compare-row">
+                                        <span class="cr-label">電子報開信率</span>
+                                        <span class="cr-val highlight">60–80%</span>
+                                    </div>
+                                    <div class="compare-row">
+                                        <span class="cr-label">點擊率 CTR</span>
+                                        <span class="cr-val highlight">8–15%</span>
+                                    </div>
+                                    <div class="compare-row">
+                                        <span class="cr-label">購買轉化率 CVR</span>
+                                        <span class="cr-val highlight">5–10x</span>
+                                    </div>
+                                    <div class="compare-row">
+                                        <span class="cr-label">受眾信任度</span>
+                                        <span class="cr-val highlight">極高</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="compare-row">
-                                <span class="cr-label">購買轉化率 CVR</span>
-                                <span class="cr-val">0.5–1%</span>
-                            </div>
-                            <div class="compare-row">
-                                <span class="cr-label">受眾信任度</span>
-                                <span class="cr-val">低</span>
+                            <!-- Slide 3 -->
+                            <div class="slide-item">
+                                <div class="funnel-note">
+                                    <h4>✦ 為何私域遠勝公域廣告？</h4>
+                                    <p>鍾綺 Bell 長期與粉絲建立深度情感連結，每次推薦都像來自<strong>閨蜜的真心分享</strong>，而非冷冰冰的廣告訊息。這種高信任度讓品牌訊息的穿透力超越傳統電商廣告 5–10 倍，有效降低品牌的<strong>獲客成本（CAC）</strong>。</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="compare-card featured">
-                            <h3>🔐 Bell 私域鐵粉</h3>
-                            <div class="compare-row">
-                                <span class="cr-label">電子報開信率</span>
-                                <span class="cr-val highlight">60–80%</span>
-                            </div>
-                            <div class="compare-row">
-                                <span class="cr-label">點擊率 CTR</span>
-                                <span class="cr-val highlight">8–15%</span>
-                            </div>
-                            <div class="compare-row">
-                                <span class="cr-label">購買轉化率 CVR</span>
-                                <span class="cr-val highlight">5–10x</span>
-                            </div>
-                            <div class="compare-row">
-                                <span class="cr-label">受眾信任度</span>
-                                <span class="cr-val highlight">極高</span>
-                            </div>
+                        <div class="slide-dots">
+                            <span class="slide-dot active" data-slide="0"></span>
+                            <span class="slide-dot" data-slide="1"></span>
+                            <span class="slide-dot" data-slide="2"></span>
                         </div>
-                    </div>
-
-                    <div class="funnel-note">
-                        <h4>✦ 為何私域遠勝公域廣告？</h4>
-                        <p>鍾綺 Bell 長期與粉絲建立深度情感連結，每次推薦都像來自<strong>閨蜜的真心分享</strong>，而非冷冰冰的廣告訊息。這種高信任度讓品牌訊息的穿透力超越傳統電商廣告 5–10 倍，有效降低品牌的<strong>獲客成本（CAC）</strong>。</p>
                     </div>
                 </section>
 
@@ -1733,45 +1841,64 @@
                     <h2 class="panel-title">三大合作方向</h2>
                     <p class="panel-subtitle">依品牌需求，靈活搭配最適合的合作策略</p>
 
-                    <div class="collab-grid">
-                        <div class="collab-card">
-                            <div class="collab-num">01</div>
-                            <div class="collab-icon">🎬</div>
-                            <h3>影音廣告<br>內容創作</h3>
-                            <p>鍾綺 Bell 親自融入品牌敘事，以 Reels 短影音、Story 系列、直播帶貨等形式，將產品自然嵌入高質感的音樂生活場景。</p>
-                            <div class="collab-tags">
-                                <span class="collab-tag">Reels</span>
-                                <span class="collab-tag">Story</span>
-                                <span class="collab-tag">Live</span>
+                    <div class="slides-viewport">
+                        <div class="slides-container">
+                            <!-- Slide 1 -->
+                            <div class="slide-item">
+                                <div class="collab-card">
+                                    <div class="collab-num">01</div>
+                                    <div class="collab-icon">🎬</div>
+                                    <h3>影音廣告<br>內容創作</h3>
+                                    <p>鍾綺 Bell 親自融入品牌敘事，以 Reels 短影音、Story 系列、直播帶貨等形式，將產品自然嵌入高質感的音樂生活場景。</p>
+                                    <div class="collab-tags">
+                                        <span class="collab-tag">Reels</span>
+                                        <span class="collab-tag">Story</span>
+                                        <span class="collab-tag">Live</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="slide-item">
+                                <div class="collab-card">
+                                    <div class="collab-num">02</div>
+                                    <div class="collab-icon">🛍️</div>
+                                    <h3>電商導購<br>私域轉化</h3>
+                                    <p>透過專屬折扣碼、開箱測評、電子報推送等機制，精準觸達鐵粉群，以最高效的方式驅動銷售轉化，可追蹤完整 ROI 數據。</p>
+                                    <div class="collab-tags">
+                                        <span class="collab-tag">折扣碼</span>
+                                        <span class="collab-tag">開箱測評</span>
+                                        <span class="collab-tag">Email</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="slide-item">
+                                <div class="collab-card">
+                                    <div class="collab-num">03</div>
+                                    <div class="collab-icon">🌟</div>
+                                    <h3>跨界代言<br>品牌共創</h3>
+                                    <p>以藝人身份深度綁定品牌，打造聯名企劃、品牌大使或限定系列，借助台語 R&B 的文化底蘊，賦予品牌獨特的在地故事性。</p>
+                                    <div class="collab-tags">
+                                        <span class="collab-tag">聯名企劃</span>
+                                        <span class="collab-tag">品牌大使</span>
+                                        <span class="collab-tag">限定系列</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class="slide-item">
+                                <div class="collab-footer-note">
+                                    <span>✦</span>
+                                    <p>以上方向皆可客製化組合，歡迎<strong>留言給專業團隊</strong>，我們將在 48 小時內提供專屬合作企劃書與報價。</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="collab-card">
-                            <div class="collab-num">02</div>
-                            <div class="collab-icon">🛍️</div>
-                            <h3>電商導購<br>私域轉化</h3>
-                            <p>透過專屬折扣碼、開箱測評、電子報推送等機制，精準觸達鐵粉群，以最高效的方式驅動銷售轉化，可追蹤完整 ROI 數據。</p>
-                            <div class="collab-tags">
-                                <span class="collab-tag">折扣碼</span>
-                                <span class="collab-tag">開箱測評</span>
-                                <span class="collab-tag">Email</span>
-                            </div>
+                        <div class="slide-dots">
+                            <span class="slide-dot active" data-slide="0"></span>
+                            <span class="slide-dot" data-slide="1"></span>
+                            <span class="slide-dot" data-slide="2"></span>
+                            <span class="slide-dot" data-slide="3"></span>
                         </div>
-                        <div class="collab-card">
-                            <div class="collab-num">03</div>
-                            <div class="collab-icon">🌟</div>
-                            <h3>跨界代言<br>品牌共創</h3>
-                            <p>以藝人身份深度綁定品牌，打造聯名企劃、品牌大使或限定系列，借助台語 R&B 的文化底蘊，賦予品牌獨特的在地故事性。</p>
-                            <div class="collab-tags">
-                                <span class="collab-tag">聯名企劃</span>
-                                <span class="collab-tag">品牌大使</span>
-                                <span class="collab-tag">限定系列</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="collab-footer-note">
-                        <span>✦</span>
-                        <p>以上方向皆可客製化組合，歡迎<strong>留言給專業團隊</strong>，我們將在 48 小時內提供專屬合作企劃書與報價。</p>
                     </div>
                 </section>
 
@@ -1899,6 +2026,10 @@
                             targetPanel.classList.add('active');
                         });
                     });
+
+                    // Reset slides in newly opened tab on mobile
+                    const firstDot = targetPanel.querySelector('.slide-dot[data-slide="0"]');
+                    if (firstDot) firstDot.click();
                 }
             });
         });
@@ -1906,6 +2037,51 @@
         // Init: set first panel display
         document.querySelectorAll('.tab-panel').forEach((p, i) => {
             p.style.display = i === 0 ? 'block' : 'none';
+        });
+
+        // === Slides Deck Control (Mobile Only) ===
+        document.querySelectorAll('.slides-viewport').forEach(viewport => {
+            const container = viewport.querySelector('.slides-container');
+            const dots = viewport.querySelectorAll('.slide-dot');
+            let currentIndex = 0;
+            const maxIndex = dots.length - 1;
+
+            function goToSlide(index) {
+                if (index < 0) index = 0;
+                if (index > maxIndex) index = maxIndex;
+                currentIndex = index;
+                
+                // Slide translation
+                container.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update dots
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === currentIndex);
+                });
+            }
+
+            // Dot click events
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => goToSlide(idx));
+            });
+
+            // Touch Swipe Support
+            let touchStartX = 0;
+            viewport.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 40) { // Swipe threshold
+                    if (diff > 0) {
+                        goToSlide(currentIndex + 1); // Swipe left -> Next
+                    } else {
+                        goToSlide(currentIndex - 1); // Swipe right -> Prev
+                    }
+                }
+            }, { passive: true });
         });
 
         // === Modal Control ===
