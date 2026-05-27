@@ -860,22 +860,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(2, 6, 17, 0.8);
+            background: rgba(2, 6, 17, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: block; /* Changed from flex to block to allow natural scroll layout */
+            overflow-y: auto; /* Enable vertical scroll on the overlay itself! */
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 20px;
+            padding: 20px 16px;
+            -webkit-overflow-scrolling: touch; /* Butter smooth native scrolling on iOS */
         }
 
         .modal-overlay.active {
             opacity: 1;
-            pointer-events: auto; /* Re-enable clicks & touches on popup! */
+            pointer-events: auto;
         }
 
         /* Hide floating CTA button when modal is open */
@@ -884,8 +884,8 @@
         }
 
         .modal-window {
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(30, 41, 59, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 28px;
             width: 100%;
             max-width: 520px;
@@ -894,9 +894,7 @@
             transform: scale(0.9) translateY(20px);
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
-            display: flex;
-            flex-direction: column;
-            max-height: 85vh; /* Limit desktop modal height to fit viewport */
+            margin: 40px auto;
         }
 
         .modal-overlay.active .modal-window {
@@ -909,11 +907,10 @@
             justify-content: space-between;
             align-items: flex-start;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            flex-shrink: 0; /* Keep header fixed size */
         }
 
         .modal-header-info h3 {
-            font-size: 1.85rem; /* Scaled up (+50%) */
+            font-size: 1.85rem;
             font-weight: 800;
             color: var(--text-primary);
             margin-bottom: 6px;
@@ -947,33 +944,9 @@
             border-color: rgba(244, 63, 94, 0.3);
         }
 
-        /* Modal Body Scrollable middle section */
-        .modal-body-scroll {
-            padding: 24px 32px;
-            overflow-y: auto;
-            flex-grow: 1; /* Expand scrollable body to fill height */
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .modal-body-scroll::-webkit-scrollbar {
-            width: 6px;
-        }
-        .modal-body-scroll::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .modal-body-scroll::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-        }
-
-        /* Modal Fixed Footer container */
-        .modal-footer {
-            padding: 16px 32px 28px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(15, 23, 42, 0.3); /* Subtle dark backer for footer */
-            flex-shrink: 0; /* Keep footer fixed size */
+        /* Modal Body - Flows naturally inside scrollable overlay */
+        .modal-body {
+            padding: 24px 32px 32px;
         }
 
         .form-grid {
@@ -1326,19 +1299,15 @@
 
             .modal-window {
                 border-radius: 20px;
-                max-height: 80vh; /* Tighten max height to fit small viewports */
+                margin: 16px auto 80px; /* Add margin bottom to clear floating area, centers naturally */
             }
             
             .modal-header {
-                padding: 18px 20px 12px;
+                padding: 20px 20px 12px;
             }
             
-            .modal-body-scroll {
-                padding: 16px 20px; /* Reduced vertical spacing on mobile */
-            }
-
-            .modal-footer {
-                padding: 12px 20px 20px;
+            .modal-body {
+                padding: 20px;
             }
 
             .form-group {
@@ -1587,7 +1556,7 @@
     <div id="contact-modal" class="modal-overlay" onclick="closeModalOnOutsideClick(event)">
         <div class="modal-window">
             
-            <!-- Standard Form Header (Fixed at top) -->
+            <!-- Standard Form Header -->
             <div class="modal-header">
                 <div class="modal-header-info">
                     <h3>留言給經紀人</h3>
@@ -1596,10 +1565,9 @@
                 <button class="modal-close-btn" onclick="closeModal()">✕</button>
             </div>
 
-            <!-- Form enclosing scrollable middle and fixed footer -->
-            <form id="collaboration-form" onsubmit="handleFormSubmit(event)">
-                <!-- Scrollable Body fields -->
-                <div class="modal-body-scroll">
+            <!-- Form Content (Flows naturally) -->
+            <div class="modal-body">
+                <form id="collaboration-form" onsubmit="handleFormSubmit(event)">
                     
                     <div class="form-grid">
                         <div class="form-group">
@@ -1639,15 +1607,11 @@
                         <textarea class="form-textarea" id="coop-concept" required placeholder="請簡單說明您想推廣的產品與期望的合作策略方向..."></textarea>
                     </div>
 
-                </div>
-
-                <!-- Fixed Footer with Submit button -->
-                <div class="modal-footer">
-                    <button class="form-submit-btn" type="submit">
+                    <button class="form-submit-btn" type="submit" style="margin-top: 8px;">
                         🚀 發送商務提案與聯絡經紀人
                     </button>
-                </div>
-            </form>
+                </form>
+            </div>
 
             <!-- Success screen -->
             <div id="success-screen" class="modal-success-screen">
