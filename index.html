@@ -875,6 +875,12 @@
 
         .modal-overlay.active {
             opacity: 1;
+            pointer-events: auto; /* Re-enable clicks & touches on popup! */
+        }
+
+        /* Hide floating CTA button when modal is open */
+        body.modal-open .contact-cta-wrapper {
+            display: none !important;
         }
 
         .modal-window {
@@ -1683,6 +1689,7 @@
         function openModal() {
             const modal = document.getElementById('contact-modal');
             modal.classList.add('active');
+            document.body.classList.add('modal-open'); // Hide the floating action button
             // Disable body touch/scrolling under modal for pure app feel
             document.body.style.overflow = 'hidden';
         }
@@ -1690,6 +1697,7 @@
         function closeModal() {
             const modal = document.getElementById('contact-modal');
             modal.classList.remove('active');
+            document.body.classList.remove('modal-open'); // Restore the floating action button
             // Re-enable scroll under modal only for mobile
             if (window.innerWidth <= 768) {
                 document.body.style.overflow = 'auto';
