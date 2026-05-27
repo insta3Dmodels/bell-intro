@@ -409,37 +409,43 @@
         }
 
         /* =========================================================
-           SLIDES SYSTEM — FOR PITCH DECK (MOBILE ONLY)
+           SLIDES SYSTEM — FOR PITCH DECK
            ========================================================= */
         .slides-viewport {
             width: 100%;
-            overflow: visible;
         }
-        .slides-container {
-            display: block;
-            transition: none;
-            transform: none !important;
-        }
-        .slide-item {
-            width: 100%;
-            display: block;
-        }
-        .slide-dots {
-            display: none;
+        @media (min-width: 769px) {
+            .slides-viewport {
+                overflow: visible;
+            }
+            .slides-container {
+                display: block;
+                transition: none;
+                transform: none;
+            }
+            .slide-item {
+                width: 100%;
+                display: block;
+            }
+            .slide-dots {
+                display: none;
+            }
         }
 
         /* =========================================================
            TAB 1 — TRAFFIC DATA
            ========================================================= */
-        #panel-traffic .slides-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-        #panel-traffic .slide-item:nth-child(3),
-        #panel-traffic .slide-item:nth-child(4) {
-            grid-column: span 2;
+        @media (min-width: 769px) {
+            #panel-traffic .slides-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+                margin-bottom: 16px;
+            }
+            #panel-traffic .slide-item:nth-child(3),
+            #panel-traffic .slide-item:nth-child(4) {
+                grid-column: span 2;
+            }
         }
 
         .metric-card {
@@ -560,14 +566,16 @@
         /* =========================================================
            TAB 2 — PRIVATE FUNNEL
            ========================================================= */
-        #panel-private .slides-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        #panel-private .slide-item:nth-child(3) {
-            grid-column: span 2;
+        @media (min-width: 769px) {
+            #panel-private .slides-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+                margin-bottom: 24px;
+            }
+            #panel-private .slide-item:nth-child(3) {
+                grid-column: span 2;
+            }
         }
 
         .compare-card {
@@ -658,14 +666,16 @@
         /* =========================================================
            TAB 3 — COLLABORATION DIRECTIONS
            ========================================================= */
-        #panel-collab .slides-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        #panel-collab .slide-item:nth-child(4) {
-            grid-column: span 3;
+        @media (min-width: 769px) {
+            #panel-collab .slides-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+                margin-bottom: 24px;
+            }
+            #panel-collab .slide-item:nth-child(4) {
+                grid-column: span 3;
+            }
         }
 
         .collab-card {
@@ -1289,206 +1299,265 @@
                 margin-top: 0 !important;
             }
 
-            .panel-title { 
-                font-size: 1.7rem; 
-                margin-bottom: 4px;
-                font-weight: 800;
-            }
-            
-            .panel-subtitle { 
-                font-size: 1rem; 
-                margin-bottom: 22px;
-                color: rgba(255, 255, 255, 0.85);
-                font-weight: 500;
+            /* Hide section titles and subtitles to match approved mockup minimalism */
+            .panel-title, .panel-subtitle { 
+                display: none !important; 
             }
 
-            /* Grid optimizations inside tab cards */
-            .metrics-grid { 
-                grid-template-columns: 1fr; 
-                gap: 16px;
-                margin-bottom: 16px;
-            }
-            
-            .metric-card {
-                background: rgba(255, 255, 255, 0.04);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 8px;
-                padding: 22px 20px;
+            /* Eliminate nested card borders and double backgrounds on mobile */
+            .metric-card, .compare-card, .collab-card, .funnel-note, .collab-footer-note {
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
             }
 
-            .metric-card.wide { grid-column: span 1; }
-            
+            /* Main Metric Card Font Redesign */
             .metric-num { 
-                font-size: 3.3rem; 
+                font-size: clamp(3.4rem, 12vw, 4.8rem) !important; 
+                font-weight: 800;
+                text-align: center;
+                color: var(--gold-bright);
+                margin-bottom: 12px;
+                line-height: 1.1;
+                font-family: var(--font-serif);
+            }
+
+            .metric-num sup {
+                font-size: 0.55em;
+                color: var(--gold-mid);
             }
             
             .metric-label { 
-                font-size: 1.05rem; 
-                margin-top: 6px;
-                color: var(--white);
+                font-size: clamp(1.8rem, 6vw, 2.4rem) !important; 
                 font-weight: 700;
+                text-align: center;
+                color: #FFFFFF !important;
+                margin-bottom: 22px;
+                line-height: 1.25;
+                letter-spacing: 1px;
+                text-transform: none;
+                margin-top: 0 !important;
             }
             
             .metric-desc { 
-                font-size: 1.05rem; 
-                margin-top: 10px;
-                line-height: 1.75;
-                color: rgba(255, 255, 255, 0.95);
+                font-size: clamp(1.1rem, 3.5vw, 1.35rem) !important; 
+                line-height: 1.7;
+                text-align: center;
+                color: rgba(255, 255, 255, 0.85) !important;
+                max-width: 90%;
+                margin: 0 auto;
+                margin-top: 0 !important;
             }
 
+            /* Tab 1 Slide 3: Mini Stats Row - Redesigned as clean vertical iOS-style list */
             .metrics-row { 
-                grid-template-columns: repeat(3, 1fr); 
-                gap: 8px;
-                margin-bottom: 16px;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 16px !important;
+                max-width: 85%;
+                margin: 0 auto;
+                margin-bottom: 0 !important;
             }
 
             .metric-mini {
-                background: rgba(255, 255, 255, 0.03);
-                border: 1px solid rgba(255, 255, 255, 0.06);
-                border-radius: 6px;
-                padding: 12px 6px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 16px 20px !important;
+                background: rgba(255, 255, 255, 0.03) !important;
+                border: 1px solid rgba(255, 255, 255, 0.08) !important;
+                border-radius: 8px !important;
+                text-align: left;
             }
 
             .metric-mini .mn-val { 
-                font-size: 1.35rem; 
+                font-size: 1.6rem !important; 
+                color: var(--gold-bright) !important;
+                font-weight: 800;
+                order: 2;
             }
             
             .metric-mini .mn-label { 
-                font-size: 0.75rem; 
+                font-size: 1.1rem !important; 
+                color: rgba(255, 255, 255, 0.8) !important;
+                font-weight: 600;
                 letter-spacing: 0.5px;
-                margin-top: 4px;
+                margin-top: 0 !important;
+                order: 1;
             }
 
+            /* Tab 1 Slide 4: Insight Box Redesign */
             .insight-box {
-                background: rgba(212, 175, 55, 0.06);
-                border: 1px solid rgba(212, 175, 55, 0.18);
-                border-radius: 8px;
-                padding: 18px;
-                gap: 12px;
+                border: none !important;
+                background: transparent !important;
+                padding: 10px !important;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 18px;
             }
 
             .insight-icon {
-                font-size: 1.4rem;
+                font-size: 2.5rem !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                flex-shrink: 0;
             }
 
             .insight-box p {
-                font-size: 1.05rem;
-                line-height: 1.75;
-                color: rgba(255, 255, 255, 0.95);
+                font-size: clamp(1.1rem, 3.5vw, 1.35rem) !important;
+                line-height: 1.7;
+                color: rgba(255, 255, 255, 0.85) !important;
+                max-width: 90%;
+                margin: 0 auto;
             }
 
-            .compare-grid { 
-                grid-template-columns: 1fr; 
-                gap: 16px;
-                margin-bottom: 20px;
+            /* Tab 2 Slide 1 & 2: Compare Card Redesign */
+            .compare-card h3 {
+                font-size: clamp(1.8rem, 6vw, 2.4rem) !important; 
+                font-weight: 700;
+                text-align: center;
+                color: var(--gold-bright) !important;
+                margin-bottom: 22px;
+                line-height: 1.25;
+                border-bottom: none !important;
+                padding-bottom: 0 !important;
             }
 
-            .compare-card {
-                background: rgba(255, 255, 255, 0.03);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 8px;
-                padding: 22px 20px;
-            }
-
-            .compare-card.featured {
-                border-color: rgba(212, 175, 55, 0.45);
-                background: linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(212, 175, 55, 0.06));
+            .compare-card.featured h3 {
+                color: var(--gold-bright) !important;
             }
 
             .compare-card.featured::after {
-                font-size: 0.65rem;
-                padding: 3px 8px;
-                top: 14px;
-                right: 14px;
-            }
-
-            .compare-card h3 {
-                font-size: 1.25rem;
-                margin-bottom: 16px;
-                padding-bottom: 10px;
+                display: none !important; /* Hide 'CORE VALUE' badge on mobile to avoid layout overlap */
             }
 
             .compare-row {
-                padding: 12px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 85%;
+                margin: 0 auto;
+                padding: 14px 0 !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+            }
+
+            .compare-row:last-child {
+                border-bottom: none !important;
             }
 
             .cr-label { 
-                font-size: 1.05rem; 
-                color: rgba(255, 255, 255, 0.9);
+                font-size: 1.15rem !important; 
+                color: rgba(255, 255, 255, 0.8) !important;
             }
             
             .cr-val { 
-                font-size: 1.05rem; 
-                color: var(--white);
+                font-size: 1.15rem !important; 
+                color: #FFFFFF !important;
             }
             
             .cr-val.highlight { 
-                font-size: 1.4rem; 
+                font-size: 1.6rem !important; 
+                color: var(--gold-bright) !important;
+                font-weight: 800;
             }
 
+            /* Tab 2 Slide 3: Funnel Note Redesign */
             .funnel-note {
-                background: rgba(255, 255, 255, 0.04);
-                border-left-width: 4px;
-                padding: 18px 20px;
-                border-radius: 0 8px 8px 0;
-                margin-bottom: 0;
+                border-left: none !important;
+                padding: 10px !important;
+                text-align: center;
             }
 
-            .funnel-note h4 { font-size: 1.2rem; }
-            .funnel-note p { font-size: 1.05rem; line-height: 1.75; color: rgba(255, 255, 255, 0.95); }
-
-            .collab-grid { 
-                grid-template-columns: 1fr; 
-                gap: 16px;
+            .funnel-note h4 { 
+                font-size: clamp(1.8rem, 6vw, 2.4rem) !important; 
+                font-weight: 700;
+                color: var(--gold-bright) !important;
                 margin-bottom: 20px;
             }
 
+            .funnel-note p { 
+                font-size: clamp(1.1rem, 3.5vw, 1.35rem) !important; 
+                line-height: 1.7; 
+                color: rgba(255, 255, 255, 0.85) !important; 
+                max-width: 90%;
+                margin: 0 auto;
+            }
+
+            /* Tab 3 Slides 1, 2, 3: Collab Card Redesign */
             .collab-card {
-                background: rgba(255, 255, 255, 0.03);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 8px;
-                padding: 24px 20px;
+                text-align: center;
             }
 
             .collab-num {
-                font-size: 3.2rem;
-                margin-bottom: 6px;
+                font-size: clamp(3.4rem, 12vw, 4.8rem) !important; 
+                font-weight: 800;
+                color: var(--gold-bright) !important;
+                margin-bottom: 10px;
+                line-height: 1.1;
             }
 
             .collab-icon {
-                font-size: 1.6rem;
-                margin-bottom: 12px;
+                font-size: 2.2rem !important;
+                margin-bottom: 14px !important;
             }
 
             .collab-card h3 {
-                font-size: 1.3rem;
-                margin-bottom: 12px;
+                font-size: clamp(1.8rem, 6vw, 2.4rem) !important; 
+                font-weight: 700;
+                text-align: center;
+                color: #FFFFFF !important;
+                margin-bottom: 22px;
+                line-height: 1.25;
             }
 
             .collab-card p {
-                font-size: 1.05rem;
-                line-height: 1.75;
-                color: rgba(255, 255, 255, 0.95);
+                font-size: clamp(1.1rem, 3.5vw, 1.35rem) !important;
+                line-height: 1.7;
+                color: rgba(255, 255, 255, 0.85) !important;
+                max-width: 90%;
+                margin: 0 auto;
             }
 
             .collab-tags {
-                margin-top: 16px;
+                margin-top: 24px !important;
+                justify-content: center;
+                gap: 10px !important;
             }
 
             .collab-tag {
-                font-size: 0.8rem;
-                padding: 4px 10px;
+                font-size: 0.9rem !important;
+                padding: 4px 12px !important;
             }
 
+            /* Tab 3 Slide 4: Footer Note Redesign */
             .collab-footer-note {
-                background: rgba(255, 255, 255, 0.03);
-                border: 1px solid rgba(255, 255, 255, 0.06);
-                border-radius: 8px;
-                padding: 18px;
-                gap: 12px;
+                border: none !important;
+                padding: 10px !important;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 16px;
             }
 
-            .collab-footer-note p { font-size: 1.02rem; line-height: 1.75; color: rgba(255, 255, 255, 0.95); }
+            .collab-footer-note span {
+                font-size: 2.5rem !important;
+                color: var(--gold-bright) !important;
+            }
+
+            .collab-footer-note p { 
+                font-size: clamp(1.15rem, 3.8vw, 1.45rem) !important; 
+                line-height: 1.75; 
+                color: rgba(255, 255, 255, 0.9) !important; 
+                max-width: 85%;
+                margin: 0 auto;
+            }
 
             /* App-like Fixed Bottom Navigation Bar */
             .tab-nav {
