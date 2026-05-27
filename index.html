@@ -30,9 +30,9 @@
             --accent-blue: #38BDF8;     /* Glowing Cyan */
             
             /* Typography & hierarchy */
-            --text-primary: #F8FAFC;
-            --text-secondary: #94A3B8;
-            --text-muted: #64748B;
+            --text-primary: #FFFFFF;
+            --text-secondary: #F1F5F9; /* Increased contrast, very light gray */
+            --text-muted: #CBD5E1;     /* Increased contrast for minor elements */
             
             --font-sans: 'Outfit', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             
@@ -186,7 +186,7 @@
         }
 
         .sidebar-header h1 {
-            font-size: 2.3rem;
+            font-size: 3rem;
             font-weight: 900;
             line-height: 1.2;
             letter-spacing: 1px;
@@ -199,7 +199,7 @@
         .sidebar-header h1 span {
             display: block;
             font-family: 'Outfit', sans-serif;
-            font-size: 1.6rem;
+            font-size: 2.2rem;
             font-weight: 500;
             color: var(--primary-gold);
             -webkit-text-fill-color: var(--primary-gold);
@@ -207,12 +207,12 @@
         }
 
         .sidebar-header .pitch {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-            line-height: 1.5;
+            font-size: 1.55rem; /* Expanded size (+50%) */
+            color: var(--text-primary); /* Higher contrast */
+            font-weight: 500; /* Bold weight for better readability */
+            line-height: 1.6;
             margin-top: 15px;
-            border-left: 2px solid var(--accent-coral);
+            border-left: 3px solid var(--accent-coral);
             padding-left: 12px;
         }
 
@@ -223,13 +223,14 @@
         }
 
         .source-tag {
-            font-size: 0.75rem;
+            font-size: 1rem; /* Scaled up */
             color: var(--text-muted);
             line-height: 1.4;
             display: block;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 16px;
             margin-top: 24px;
+            font-weight: 500;
         }
 
         /* Right Side Content Hub & Nav Column */
@@ -264,8 +265,8 @@
             border: none;
             color: var(--text-secondary);
             font-family: var(--font-sans);
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 1.25rem; /* Scaled up */
+            font-weight: 600; /* Increased weight */
             padding: 16px 20px;
             cursor: pointer;
             border-radius: 12px;
@@ -349,8 +350,8 @@
         }
 
         .section-header h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
+            font-size: 2.3rem; /* Scaled up */
+            font-weight: 800;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -361,8 +362,9 @@
 
         .section-header p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 1.35rem; /* Scaled up */
             margin-top: 6px;
+            font-weight: 500;
         }
 
         /* -------------------------------------------------------------
@@ -407,7 +409,7 @@
 
         .metric-glow-text {
             font-family: 'Outfit', sans-serif;
-            font-size: 4rem;
+            font-size: 5.5rem; /* Scaled up */
             font-weight: 900;
             line-height: 1;
             letter-spacing: -2px;
@@ -418,21 +420,22 @@
         }
 
         .metric-glow-text span {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             margin-left: 2px;
         }
 
         .metric-label {
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-size: 1.5rem; /* Scaled up */
+            font-weight: 800;
             color: var(--text-primary);
             margin-bottom: 10px;
         }
 
         .metric-desc {
-            font-size: 0.9rem;
+            font-size: 1.35rem; /* Scaled up */
             color: var(--text-secondary);
-            line-height: 1.5;
+            line-height: 1.6;
+            font-weight: 500;
         }
 
         .metrics-sub-list {
@@ -458,26 +461,27 @@
         }
 
         .metric-small-info h4 {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
+            font-size: 1.35rem; /* Scaled up */
+            color: var(--text-primary);
             margin-bottom: 4px;
+            font-weight: 700;
         }
 
         .metric-small-info p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            font-size: 1.1rem; /* Scaled up */
+            color: var(--text-secondary);
         }
 
         .metric-small-value {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
+            font-size: 2.4rem; /* Scaled up */
             font-weight: 800;
             color: var(--accent-coral);
         }
         
         .metric-small-value span {
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 1.2rem;
+            font-weight: 600;
             margin-left: 1px;
         }
 
@@ -504,9 +508,10 @@
         }
 
         .funnel-note-box p {
-            font-size: 0.88rem;
+            font-size: 1.3rem; /* Scaled up */
             color: #A5F3FC;
-            line-height: 1.5;
+            line-height: 1.6;
+            font-weight: 500;
         }
 
         /* -------------------------------------------------------------
@@ -552,8 +557,8 @@
         }
 
         .comparison-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
+            font-size: 1.6rem; /* Scaled up */
+            font-weight: 800;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -561,7 +566,7 @@
         }
 
         .comparison-card h3 i {
-            font-size: 1.25rem;
+            font-size: 1.65rem;
         }
 
         .comp-metric-row {
@@ -578,20 +583,21 @@
         }
 
         .comp-metric-label {
-            font-size: 0.9rem;
+            font-size: 1.3rem; /* Scaled up */
             color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .comp-metric-value {
-            font-weight: 700;
-            font-size: 1rem;
+            font-weight: 800;
+            font-size: 1.35rem; /* Scaled up */
             text-align: right;
         }
 
         .comp-metric-value.boost {
             color: var(--accent-coral);
             font-family: 'Outfit', sans-serif;
-            font-size: 1.6rem;
+            font-size: 2.2rem; /* Scaled up */
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -599,8 +605,8 @@
         }
         
         .comp-metric-value.boost span {
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-size: 1.1rem;
+            font-weight: 600;
             color: var(--text-muted);
         }
 
@@ -638,8 +644,8 @@
         }
 
         .funnel-insights-card h4 {
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: 1.45rem; /* Scaled up */
+            font-weight: 800;
             color: var(--primary-gold);
             margin-bottom: 12px;
             display: flex;
@@ -648,9 +654,10 @@
         }
 
         .funnel-insights-card p {
-            font-size: 0.9rem;
+            font-size: 1.3rem; /* Scaled up */
             color: var(--text-secondary);
             line-height: 1.6;
+            font-weight: 500;
         }
 
         /* -------------------------------------------------------------
@@ -710,30 +717,31 @@
         }
 
         .bento-box h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.65rem; /* Scaled up */
+            font-weight: 800;
             margin-bottom: 12px;
             color: var(--text-primary);
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
         }
 
         .bento-box h3 span {
-            font-size: 0.85rem;
+            font-size: 1.25rem; /* Scaled up */
             color: var(--accent-blue);
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .bento-desc {
-            font-size: 0.88rem;
+            font-size: 1.3rem; /* Scaled up */
             color: var(--text-secondary);
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 20px;
+            font-weight: 500;
         }
 
         .bento-proof-box {
-            background: rgba(15, 23, 42, 0.4);
+            background: rgba(15, 23, 42, 0.45);
             border-radius: 12px;
             padding: 16px;
             margin-top: auto;
@@ -741,8 +749,8 @@
         }
 
         .bento-proof-box h4 {
-            font-size: 0.8rem;
-            font-weight: 700;
+            font-size: 1.15rem; /* Scaled up */
+            font-weight: 800;
             color: var(--primary-gold);
             margin-bottom: 6px;
             display: flex;
@@ -752,9 +760,10 @@
         }
 
         .bento-proof-box p {
-            font-size: 0.82rem;
+            font-size: 1.2rem; /* Scaled up */
             color: var(--text-secondary);
-            line-height: 1.4;
+            line-height: 1.5;
+            font-weight: 500;
         }
 
         /* Individual grid styles for a rich aesthetic */
@@ -1116,15 +1125,19 @@
                 height: auto;
                 padding: 12px;
                 gap: 16px;
-                overflow: visible;
+                overflow: hidden; /* Fix horizontal container overflow */
+                max-width: 100%;
+                width: 100%;
             }
 
             /* Sidebar changes to an elegant header card on mobile */
             .sidebar {
-                padding: 24px;
+                padding: 20px; /* Reduced to balance horizontal margins */
                 border-radius: 20px;
                 min-height: auto;
                 gap: 16px;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             .sidebar-footer {
@@ -1132,7 +1145,7 @@
             }
 
             .sidebar-header h1 {
-                font-size: 1.8rem;
+                font-size: 2.2rem; /* Scaled up */
                 display: flex;
                 align-items: baseline;
                 flex-wrap: wrap;
@@ -1140,21 +1153,26 @@
             }
 
             .sidebar-header h1 span {
-                font-size: 1.1rem;
+                font-size: 1.5rem; /* Scaled up */
                 display: inline-block;
                 margin-top: 0;
             }
 
             .sidebar-header .pitch {
                 margin-top: 8px;
-                font-size: 0.95rem;
+                font-size: 1.25rem; /* Scaled up */
+                font-weight: 500;
+                line-height: 1.5;
             }
 
             /* Content hub container */
             .content-hub {
                 border-radius: 20px;
                 height: auto;
-                overflow: visible;
+                overflow: hidden; /* Fix horizontal overflow from tab navigation */
+                max-width: 100%;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             /* Tab buttons horizontal scroll on mobile */
@@ -1163,6 +1181,9 @@
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none; /* Hide scrollbar Firefox */
+                display: flex;
+                flex-wrap: nowrap;
+                width: 100%;
             }
 
             .tab-navigation::-webkit-scrollbar {
@@ -1171,9 +1192,10 @@
 
             .tab-btn {
                 padding: 12px 14px;
-                font-size: 0.88rem;
+                font-size: 1.15rem; /* Scaled up */
                 white-space: nowrap; /* Prevent line breaks */
                 border-radius: 8px;
+                font-weight: 600;
             }
 
             .tab-btn.active::after {
@@ -1182,8 +1204,10 @@
             }
 
             .tab-content-wrapper {
-                padding: 20px;
+                padding: 16px; /* Optimized padding for screen balance */
                 overflow-y: visible; /* Use page scroll on mobile */
+                width: 100%;
+                box-sizing: border-box;
             }
 
             /* Layout inner structures for mobile */
@@ -1193,11 +1217,11 @@
             }
 
             .metric-big-card {
-                padding: 24px;
+                padding: 20px;
             }
 
             .metric-glow-text {
-                font-size: 3.2rem;
+                font-size: 4.2rem; /* Scaled up */
             }
 
             .comparison-wrapper {
@@ -1230,7 +1254,7 @@
                 box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
                 border-top: 1px solid rgba(255, 255, 255, 0.05);
                 animation: none;
-                bottom: 0px;
+                z-index: 999;
             }
 
             .contact-floating-btn {
@@ -1238,12 +1262,12 @@
                 justify-content: center;
                 animation: none;
                 padding: 14px 20px;
-                font-size: 0.95rem;
+                font-size: 1.15rem; /* Scaled up */
             }
 
             /* Give container bottom space to avoid overlapping contact bar */
             .app-container {
-                margin-bottom: 70px;
+                margin-bottom: 90px;
             }
 
             .form-grid {
